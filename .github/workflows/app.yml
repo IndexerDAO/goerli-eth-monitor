@@ -3,10 +3,6 @@ name: deployment
 on:
   workflow_dispatch 
 
-# env:
-#   WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-#   OPERATOR_ADDRESS: ${{ secrets.OPERATOR_ADDRESS }}
-
 jobs:
   build:
     runs-on: ubuntu-latest
