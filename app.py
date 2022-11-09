@@ -1,6 +1,7 @@
 import requests
 from datetime import datetime
 import os
+import sys
 from dotenv import load_dotenv
 load_dotenv()
 
@@ -37,9 +38,9 @@ def post_message(discord_webhook_url, message_content):
         return e
 
 def main():
-    goerliETH_amount = get_goerliETH_amount(os.environ["OPERATOR_ADDRESS"])
+    goerliETH_amount = get_goerliETH_amount(sys.argv[1])
     message = create_message_content(goerliETH_amount)
-    post_message(os.environ["WEBHOOK_URL"], message)
+    post_message(sys.argv[2], message)
 
 if __name__=="__main__":
     main()
