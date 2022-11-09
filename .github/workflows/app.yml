@@ -3,9 +3,9 @@ name: deployment
 on:
   workflow_dispatch 
 
-env:
-  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
-  OPERATOR_ADDRESS: ${{ secrets.OPERATOR_ADDRESS }}
+# env:
+#   WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+#   OPERATOR_ADDRESS: ${{ secrets.OPERATOR_ADDRESS }}
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
         uses: actions/checkout@v2
       
       - name: setup python
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v3
         with:
           python-version: '3.10'
    
@@ -26,4 +26,4 @@ jobs:
           
       - name: execute py script
         run: |
-          python -m app
+          python -m app ${{ secrets.OPERATOR_ADDRESS }} ${{ secrets.WEBHOOK_URL }}
