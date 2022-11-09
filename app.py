@@ -28,7 +28,7 @@ def get_goerliETH_amount(address):
 
 def create_message_content(goerli_data):
     return {
-        "content": f"{goerli_data['address']} \nTimestamp: {goerli_data['timestamp']} Pacific \nBalance: {goerli_data['balance']} goerliETH"
+        "content": f"{goerli_data['address']} \n{goerli_data['balance']} goerliETH remaining"
     }
 
 def post_message(discord_webhook_url, message_content):
