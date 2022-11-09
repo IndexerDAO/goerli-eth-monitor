@@ -1,0 +1,29 @@
+name: deployment
+
+on:
+  workflow_dispath
+
+env:
+  WEBHOOK_URL: ${{ secrets.WEBHOOK_URL }}
+  OPERATOR_ADDRESS: ${{ secrets.OPERATOR_ADDRESS }}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout repo content
+        uses: actions/checkout@v2
+      
+      - name: setup python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.8.10'
+   
+      - name: install non-standard python packages
+        run: |
+          python -m pip install --upgrade pip
+          pip install python-dotenv
+          
+      - name: execute py script
+        run: |
+          python -m app
